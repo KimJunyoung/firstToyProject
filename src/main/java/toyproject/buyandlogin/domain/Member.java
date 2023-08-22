@@ -1,14 +1,17 @@
 package toyproject.buyandlogin.domain;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import toyproject.buyandlogin.upload.UploadForm;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
+
 public class Member {
 
     private Long id;
@@ -28,10 +31,11 @@ public class Member {
 
     }
 
-    public Member(String memberName, String memberId, String memberPassword) {
+    public Member(String memberName, String memberId, String memberPassword, UploadForm attachFile, List<Item> items) {
         this.memberName = memberName;
         this.memberId = memberId;
         this.memberPassword = memberPassword;
+        this.attachFile = attachFile;
+        this.items = items;
     }
-
 }

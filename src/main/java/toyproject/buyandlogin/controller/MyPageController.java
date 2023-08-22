@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,7 +35,11 @@ public class MyPageController {
     }
 
     @PostMapping("/{id}/edit")
-    public String myPageEditPost(@PathVariable long id, @Validated @ModelAttribute("member") UpdateForm member){
+    public String myPageEditPost(@PathVariable long id, @Validated @ModelAttribute("member") UpdateForm member, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "/mypage/edit";
+        }
+
         Member member1 = new Member();
 
         member1.setMemberName(member.getMemberName());

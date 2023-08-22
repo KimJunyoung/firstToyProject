@@ -7,6 +7,9 @@ import javax.validation.constraints.NotEmpty;
 
 @Data
 public class UpdateForm {
+
+    private Long id;
+
     @NotEmpty
     private String memberName;
     @NotEmpty
