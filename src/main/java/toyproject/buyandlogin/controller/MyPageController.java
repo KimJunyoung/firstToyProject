@@ -51,4 +51,11 @@ public class MyPageController {
         return "redirect:/";
     }
 
+    @GetMapping("/{id}/myBag")
+    public String myBagGet(@PathVariable long id, Model model){
+        Member member = memberRepository.findById(id);
+        model.addAttribute(member);
+        return "/mypage/myBag";
+    }
+
 }

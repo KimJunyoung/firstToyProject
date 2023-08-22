@@ -25,17 +25,15 @@ public class Member {
 
     private UploadForm attachFile;
 
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
 
     public Member(){
-
     }
 
-    public Member(String memberName, String memberId, String memberPassword, UploadForm attachFile, List<Item> items) {
+    public Member(String memberName, String memberId, String memberPassword, UploadForm attachFile) {
         this.memberName = memberName;
         this.memberId = memberId;
         this.memberPassword = memberPassword;
         this.attachFile = attachFile;
-        this.items = items;
     }
 }

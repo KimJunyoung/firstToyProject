@@ -23,7 +23,6 @@ public class TestDataInit {
         member.setMemberName("Junyoung");
         member.setMemberId("test");
         member.setMemberPassword("test!");
-        member.setItems(new ArrayList<>());
         memberRepository.save(member);
 
         Item item1 = new Item("스파크", "car", 5000000);

@@ -42,7 +42,7 @@
         <div class="col">
             <button class="w-100 btn btn-success btn-lg"
                     onclick="location.href='items.html'"
-                    th:onclick="|location.href='@{/myBag}'|"
+                    th:onclick="|location.href='@{/{id}/myBag(id=${member.id})}'|"
                     type="button" th:text="#{button.bag}">내 장바구니</button>
         </div>
     </div>
