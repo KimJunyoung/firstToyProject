@@ -4,9 +4,10 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import toyproject.buyandlogin.upload.UploadForm;
+import toyproject.buyandlogin.validation.NoSpecialValid;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +16,17 @@ import java.util.List;
 public class Member {
 
     private Long id;
-    @NotEmpty
+
+    @NotBlank
     private String memberName;
-    @NotEmpty
+
+    @NotBlank
     private String memberId;
+
     @Length(min=8)
-    @NotEmpty
+    @NotBlank
     private String memberPassword;
+
 
     private UploadForm attachFile;
 

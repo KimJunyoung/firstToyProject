@@ -3,20 +3,24 @@ package toyproject.buyandlogin.domain;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class UpdateForm {
 
+    @NotNull
     private Long id;
 
-    @NotEmpty
+    @NotBlank
     private String memberName;
-    @NotEmpty
+
+    @NotBlank
     private String memberId;
 
     @Length(min=8)
-    @NotEmpty
+    @NotBlank
     private String memberPassword;
 
     public UpdateForm(String memberName, String memberId, String memberPassword) {

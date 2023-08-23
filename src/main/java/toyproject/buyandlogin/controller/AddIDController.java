@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import toyproject.buyandlogin.domain.Member;
 import toyproject.buyandlogin.domain.MemberRepository;
+import toyproject.buyandlogin.validation.FindDuplication;
 import toyproject.buyandlogin.upload.FileStore;
 import toyproject.buyandlogin.upload.UploadFile;
 import toyproject.buyandlogin.upload.UploadForm;
@@ -26,6 +27,7 @@ public class AddIDController {
 
     private final MemberRepository memberRepository;
     private final FileStore fileStore;
+    private final FindDuplication findDuplication;
 
     @GetMapping("/add")
     public String addForm(@ModelAttribute("member") UploadFile member){
@@ -34,11 +36,19 @@ public class AddIDController {
 
     @PostMapping("/add")
     public String addPost(@Validated @ModelAttribute("member") UploadFile member, BindingResult bindingResult) throws IOException {
+
+        Boolean duplicateCheck = getDuplicateCheck(member);
+
+        if(duplicateCheck){
+            bindingResult.rejectValue("memberId","Duplication");
+            return "addid/addMemberForm";
+        }
+
         if(bindingResult.hasErrors()){
             return "addid/addMemberForm";
         }
 
-        log.info(member.getMultipartFile().getOriginalFilename());
+        log.info("첨부파일 이름 ={}",member.getMultipartFile().getOriginalFilename());
 
         UploadForm uploadForm = fileStore.storeFile(member.getMultipartFile());
         Member member1 = new Member();
@@ -47,7 +57,13 @@ public class AddIDController {
         member1.setMemberId(member.getMemberId());
         member1.setAttachFile(uploadForm);
 
+
         memberRepository.save(member1);
         return "redirect:/";
+    }
+
+    private Boolean getDuplicateCheck(UploadFile member) {
+        Boolean duplicateCheck = findDuplication.findDuplicate(member.getMemberId());
+        return duplicateCheck;
     }
 }

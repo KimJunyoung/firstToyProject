@@ -2,14 +2,15 @@ package toyproject.buyandlogin.login;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Data
 public class LoginForm {
 
-    @NotEmpty
+    @NotBlank
     private String memberId;
-    @NotEmpty
+    @NotBlank
     private String memberPassword;
 
 }

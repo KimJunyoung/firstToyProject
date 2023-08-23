@@ -4,9 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import toyproject.buyandlogin.additems.AddItems;
+import toyproject.buyandlogin.annotation.Login;
 import toyproject.buyandlogin.domain.Item;
 import toyproject.buyandlogin.domain.ItemRepository;
 import toyproject.buyandlogin.domain.Member;
@@ -46,8 +49,9 @@ public class SearchController {
     }
 
     @PostMapping("/search/{category}")
-    public String searchCategoryPost(@PathVariable String category, @SessionAttribute(name = "CookieSession", required = false) Member loginMember,
+    public String searchCategoryPost(@PathVariable String category, @Login Member loginMember,
                                      @ModelAttribute("item") SearchAddForm item, RedirectAttributes redirectAttributes, Model model){
+
 
         String category2 = item.getCategory();
         redirectAttributes.addAttribute("category", category2);

@@ -2,29 +2,38 @@ package toyproject.buyandlogin.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import toyproject.buyandlogin.domain.Member;
 import toyproject.buyandlogin.domain.MemberRepository;
 import toyproject.buyandlogin.domain.UpdateForm;
+import toyproject.buyandlogin.upload.FileStore;
+
+import java.net.MalformedURLException;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 public class MyPageController {
     private final MemberRepository memberRepository;
+    private final FileStore fileStore;
 
     @GetMapping("/{id}")
     public String myPage(@PathVariable long id, Model model){
         Member member = memberRepository.findById(id);
         model.addAttribute(member);
         return "/mypage/myPage";
+    }
+
+    @ResponseBody
+    @GetMapping("/images/{filename}")
+    public Resource downLoadImage(@PathVariable String filename) throws MalformedURLException {
+        return new UrlResource("file:" + fileStore.getFullPath(filename));
     }
 
     @GetMapping("/{id}/edit")
