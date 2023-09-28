@@ -33,6 +33,7 @@ public class MyPageController {
     @ResponseBody
     @GetMapping("/images/{filename}")
     public Resource downLoadImage(@PathVariable String filename) throws MalformedURLException {
+        log.info("log ={}" , filename);
         return new UrlResource("file:" + fileStore.getFullPath(filename));
     }
 

@@ -8,6 +8,7 @@ import toyproject.buyandlogin.validation.NoSpecialValid;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Member {
     @NotBlank
     private String memberPassword;
 
-
+    @NotBlank
     private UploadForm attachFile;
 
     private List<Item> items = new ArrayList<>();

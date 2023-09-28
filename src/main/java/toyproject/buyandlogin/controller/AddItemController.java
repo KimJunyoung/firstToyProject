@@ -24,7 +24,8 @@ public class AddItemController {
     }
 
     @PostMapping("/{id}")
-    public String AddItemPost(@PathVariable Long id, @SessionAttribute(name = "CookieSession", required = false) Member loginMember){;
+    public String AddItemPost(@PathVariable Long id, @SessionAttribute(name = "CookieSession",
+            required = false) Member loginMember){;
         addItems.save(loginMember, id);
         return "redirect:/add/{id}";
     }
