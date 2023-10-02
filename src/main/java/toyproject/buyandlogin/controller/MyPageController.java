@@ -12,16 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import toyproject.buyandlogin.domain.Member;
 import toyproject.buyandlogin.domain.MemberRepository;
 import toyproject.buyandlogin.domain.UpdateForm;
-import toyproject.buyandlogin.upload.FileStore;
 
-import java.net.MalformedURLException;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 public class MyPageController {
     private final MemberRepository memberRepository;
-    private final FileStore fileStore;
 
     @GetMapping("/{id}")
     public String myPage(@PathVariable long id, Model model){
@@ -30,12 +27,6 @@ public class MyPageController {
         return "/mypage/myPage";
     }
 
-    @ResponseBody
-    @GetMapping("/images/{filename}")
-    public Resource downLoadImage(@PathVariable String filename) throws MalformedURLException {
-        log.info("log ={}" , filename);
-        return new UrlResource("file:" + fileStore.getFullPath(filename));
-    }
 
     @GetMapping("/{id}/edit")
     public String myPageEdit(@PathVariable long id, Model model){

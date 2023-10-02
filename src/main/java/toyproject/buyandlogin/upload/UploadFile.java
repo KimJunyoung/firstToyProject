@@ -24,6 +24,5 @@ public class UploadFile {
     @NotBlank
     private String memberPassword;
 
-    private MultipartFile multipartFile;
 
 }

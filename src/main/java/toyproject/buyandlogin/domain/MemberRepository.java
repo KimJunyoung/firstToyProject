@@ -3,10 +3,8 @@ package toyproject.buyandlogin.domain;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-import toyproject.buyandlogin.upload.UploadForm;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Repository
@@ -24,9 +22,6 @@ public class MemberRepository {
 
     public Member findById(Long id){
         Member member = store.get(id);
-        if(member.getAttachFile() == null){
-            member.setAttachFile(new UploadForm("", ""));
-        }
         return member;
     }
 
