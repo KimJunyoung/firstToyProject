@@ -2,20 +2,19 @@ package toyproject.buyandlogin;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import toyproject.buyandlogin.domain.Item;
-import toyproject.buyandlogin.domain.ItemRepository;
+import toyproject.buyandlogin.domain.OldItem;
+import toyproject.buyandlogin.domain.OldItemRepository;
 import toyproject.buyandlogin.domain.Member;
 import toyproject.buyandlogin.domain.MemberRepository;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 
 @Component
 @RequiredArgsConstructor
 public class TestDataInit {
 
     private final MemberRepository memberRepository;
-    private final ItemRepository itemRepository;
+    private final OldItemRepository oldItemRepository;
 
     @PostConstruct
     public void init(){
@@ -25,11 +24,11 @@ public class TestDataInit {
         member.setMemberPassword("test!");
         memberRepository.save(member);
 
-        Item item1 = new Item("스파크", "car", 5000000);
-        Item item2 = new Item("베뉴", "car", 17000000);
+        OldItem oldItem1 = new OldItem("스파크", "car", 5000000);
+        OldItem oldItem2 = new OldItem("베뉴", "car", 17000000);
 
-        itemRepository.save(item1);
-        itemRepository.save(item2);
+        oldItemRepository.save(oldItem1);
+        oldItemRepository.save(oldItem2);
 
     }
 }

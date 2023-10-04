@@ -3,8 +3,8 @@ package toyproject.buyandlogin.additems;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import toyproject.buyandlogin.domain.Item;
-import toyproject.buyandlogin.domain.ItemRepository;
+import toyproject.buyandlogin.domain.OldItem;
+import toyproject.buyandlogin.domain.OldItemRepository;
 import toyproject.buyandlogin.domain.Member;
 
 import java.util.List;
@@ -14,14 +14,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddItems {
 
-    private final ItemRepository itemRepository;
+    private final OldItemRepository oldItemRepository;
 
     public void save(Member member, Long id) {
-        Item item= itemRepository.findById(id);
-        log.info(item.getItemName());
-        List<Item> items = member.getItems();
-        items.add(item);
-        log.info("{}", items);
+        OldItem oldItem = oldItemRepository.findById(id);
+        log.info(oldItem.getItemName());
+        List<OldItem> oldItems = member.getOldItems();
+        oldItems.add(oldItem);
+        log.info("{}", oldItems);
 
     }
 }

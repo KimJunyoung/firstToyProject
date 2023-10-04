@@ -21,7 +21,7 @@ public class Member {
     @NotBlank
     private String memberPassword;
 
-    private List<Item> items = new ArrayList<>();
+    private List<OldItem> oldItems = new ArrayList<>();
 
     public Member(){
     }

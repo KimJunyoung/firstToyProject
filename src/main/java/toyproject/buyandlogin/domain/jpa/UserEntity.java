@@ -15,16 +15,16 @@ public class UserEntity {
 
     private String userName;
 
-    private String userId;
+    private String userIdName;
 
     private String userPassword;
 
     @Embedded
     private Address userAddress;
 
-    public void makeUser(String username, String userId, String userPassword, Address address){
+    public void makeUser(String username, String userIdName, String userPassword, Address address){
         this.userName = username;
-        this.userId = userId;
+        this.userIdName = userIdName;
         this.userPassword = userPassword;
         this.userAddress = address;
     }
@@ -37,8 +37,8 @@ public class UserEntity {
         return userName;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUserIdName() {
+        return userIdName;
     }
 
     public String getUserPassword() {

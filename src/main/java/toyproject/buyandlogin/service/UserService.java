@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-
 public class UserService {
 
     private final UserRepository userRepository;
@@ -25,14 +24,14 @@ public class UserService {
 
     @Transactional
     public void join(UserEntity user){
-        duplicated(user.getUserId());
+        duplicated(user.getUserIdName());
         userRepository.save(user);
     }
 
     @Transactional
     public void update(Long id, UserEntity user){
         UserEntity findUser = userRepository.findById(id);
-        findUser.makeUser(user.getUserName(), user.getUserId(), user.getUserPassword(), user.getUserAddress());
+        findUser.makeUser(user.getUserName(), user.getUserIdName(), user.getUserPassword(), user.getUserAddress());
     }
 
     public List<UserEntity> findAll(){

@@ -24,7 +24,7 @@ public class UserRepository {
 
     public List<UserEntity> findByLoginId(String userId){
         return em.createQuery("select u from UserEntity u" +
-                " where u.userId = :userId", UserEntity.class).setParameter("userId", userId)
+                " where u.userIdName = :userIdName", UserEntity.class).setParameter("userIdName", userId)
                                                                                                 .getResultList();
     }
 

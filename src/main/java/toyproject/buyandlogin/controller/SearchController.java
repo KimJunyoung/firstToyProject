@@ -4,14 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import toyproject.buyandlogin.additems.AddItems;
 import toyproject.buyandlogin.annotation.Login;
-import toyproject.buyandlogin.domain.Item;
-import toyproject.buyandlogin.domain.ItemRepository;
+import toyproject.buyandlogin.domain.OldItem;
+import toyproject.buyandlogin.domain.OldItemRepository;
 import toyproject.buyandlogin.domain.Member;
 import toyproject.buyandlogin.search.SearchAddForm;
 import toyproject.buyandlogin.search.SearchForm;
@@ -22,7 +20,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class SearchController {
-    private final ItemRepository itemRepository;
+    private final OldItemRepository oldItemRepository;
     private final AddItems addItems;
 
     @GetMapping("/search")
@@ -42,7 +40,7 @@ public class SearchController {
     @GetMapping("/search/{category}")
     public String searchCategoryGet(@PathVariable String category, @ModelAttribute("itemcate") SearchAddForm item, Model model){
 
-        List<Item> byCategory = itemRepository.findByCategory(category);
+        List<OldItem> byCategory = oldItemRepository.findByCategory(category);
         model.addAttribute("items", byCategory);
 
         return "/search/category";
